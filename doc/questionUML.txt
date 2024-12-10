@@ -1,2 +1,42 @@
-Ecrire ici votre réponse à la question UML.
+Comparaison des Deux Modèles UML
 
+Modèle UML Proposé par l'Autre Ingénieur
+
+Structure :
+- Agenda : Contient une liste d'événements (events). Méthodes : addEvent(e: Event), eventsInDay(day: LocalDate).
+- Event : Attributs : title, start, duration, repetition, exceptions. Méthodes : isInDay(aDay: LocalDate), setRepetition(frequency: ChronoUnit), addException(day: LocalDate), setTermination(terminationInclusive: LocalDate), setTermination(numberOfOccurrences: long), getTerminationDate(), getNumberOfOccurrences().
+- RepetitiveEvent : Hérite de Event. Attributs : frequency. Méthodes : addException(date: LocalDate), setTermination(t: Termination).
+- FixedTerminationEvent : Hérite de RepetitiveEvent. Constructeurs : FixedTerminationEvent(title: String, start: LocalDateTime, duration: Duration, frequency: ChronoUnit, terminationInclusive: LocalDate), FixedTerminationEvent(title: String, start: LocalDateTime, duration: Duration, frequency: ChronoUnit, numberOfOccurrences: long). Méthodes : getTerminationDate(), getNumberOfOccurrences().
+- Termination : Attributs : terminationDateInclusive, numberOfOccurrences. Constructeurs : Termination(dateInclusive: LocalDate), Termination(numberOfOccurrences: long).
+
+Avantages :
+1. Clarté et Simplicité : La structure est claire et simple, avec une hiérarchie bien définie.
+2. Encapsulation : Les attributs de répétition et de terminaison sont encapsulés dans des classes spécifiques, ce qui permet une meilleure gestion et organisation.
+3. Flexibilité : La classe Termination permet de gérer différents types de terminaison (par date ou par nombre d'occurrences).
+
+Inconvénients :
+1. Complexité Inhérente : L'utilisation de l'héritage peut rendre le modèle plus complexe à comprendre et à maintenir.
+2. Relations Confuses : Les relations entre les classes peuvent devenir confuses si le modèle s'étend.
+
+Modèle UML Utilisé
+
+Structure :
+- Agenda : Contient une liste d'événements (events). Méthodes : addEvent(e: Event), eventsInDay(day: LocalDate).
+- Event : Attributs : myTitle, myStart, myDuration, repetition, exceptions. Méthodes : isInDay(aDay: LocalDate), setRepetition(frequency: ChronoUnit), addException(day: LocalDate), setTermination(terminationInclusive: LocalDate), setTermination(numberOfOccurrences: long), getTerminationDate(), getNumberOfOccurrences().
+- Repetition : Attributs : frequency. Méthodes : addException(day: LocalDate), setTermination(t: Termination).
+- Termination : Attributs : terminationDateInclusive, numberOfOccurrences. Constructeurs : Termination(dateInclusive: LocalDate), Termination(numberOfOccurrences: long).
+
+Avantages :
+1. Simplicité : Le modèle est plus simple et direct, sans utilisation d'héritage.
+2. Flexibilité : La classe Termination permet de gérer différents types de terminaison (par date ou par nombre d'occurrences).
+3. Maintenabilité : L'absence d'héritage rend le modèle plus facile à maintenir et à étendre.
+
+Inconvénients :
+1. Répétition de Code : Sans héritage, certaines fonctionnalités peuvent être répétées dans différentes classes, ce qui peut entraîner une duplication de code.
+2. Encapsulation Moins Stricte : Les attributs de répétition et de terminaison ne sont pas encapsulés dans des classes spécifiques, ce qui peut rendre la gestion moins organisée.
+
+Conclusion :
+Les deux modèles UML ont leurs avantages et inconvénients respectifs. Le choix entre les deux dépendra des besoins spécifiques du projet et des préférences de l'équipe de développement.
+- Modèle Proposé par l'Autre Ingénieur : Avantages : Clarté, encapsulation, flexibilité. Inconvénients : Complexité inhérente due à l'héritage.
+- Modèle Utilisé : Avantages : Simplicité, flexibilité, maintenabilité. Inconvénients : Répétition de code, encapsulation moins stricte.
+En fonction des priorités du projet (simplicité vs. encapsulation, flexibilité vs. maintenabilité), l'un ou l'autre modèle pourrait être préféré.
